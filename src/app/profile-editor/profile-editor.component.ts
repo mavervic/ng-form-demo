@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-profile-editor',
@@ -7,14 +7,31 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./profile-editor.component.css'],
 })
 export class ProfileEditorComponent {
-  profileForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    address: new FormGroup({
-      street: new FormControl(''),
-      city: new FormControl(''),
-      state: new FormControl(''),
-      zip: new FormControl(''),
+  constructor(private fb: FormBuilder) {}
+
+  // profileForm = new FormGroup({
+  //   firstName: new FormControl(''),
+  //   lastName: new FormControl(''),
+  //   address: new FormGroup({
+  //     street: new FormControl(''),
+  //     city: new FormControl(''),
+  //     state: new FormControl(''),
+  //     zip: new FormControl(''),
+  //   }),
+  // });
+
+  /**
+   * 陣列中的第一項是其初始值
+   * 陣列中的第二項和第三項可以提供同步和非同步驗證器
+   */
+  profileForm = this.fb.group({
+    firstName: [''],
+    lastName: [''],
+    address: this.fb.group({
+      street: [''],
+      city: [''],
+      state: [''],
+      zip: [''],
     }),
   });
 
