@@ -22,4 +22,13 @@ export class ProfileEditorComponent {
     // TODO: Use EventEmitter with form value
     console.warn(this.profileForm.value);
   }
+
+  updateProfile() {
+    this.profileForm.patchValue({
+      firstName: 'Nancy',
+      address: {
+        street: '123 Drew Street',
+      },
+    });
+  }
 }
