@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile-editor',
@@ -25,7 +25,7 @@ export class ProfileEditorComponent {
    * 陣列中的第二項和第三項可以提供同步和非同步驗證器
    */
   profileForm = this.fb.group({
-    firstName: [''],
+    firstName: ['', Validators.required], // HTML5 驗證器屬性可以和 Angular 響應式表單提供的內建驗證器組合使用。組合使用這兩種驗證器實踐，可以防止在範本檢查完之後表示式再次被修改導致的錯誤。
     lastName: [''],
     address: this.fb.group({
       street: [''],

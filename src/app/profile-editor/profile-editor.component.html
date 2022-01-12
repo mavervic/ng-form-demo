@@ -1,7 +1,8 @@
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
   <label>
     First Name:
-    <input type="text" formControlName="firstName" />
+    <!-- HTML5 驗證器屬性可以和 Angular 響應式表單提供的內建驗證器組合使用。組合使用這兩種驗證器實踐，可以防止在範本檢查完之後表示式再次被修改導致的錯誤。 -->
+    <input type="text" formControlName="firstName" required />
   </label>
 
   <label>
@@ -39,3 +40,7 @@
 <p>
   <button (click)="updateProfile()">Update Profile</button>
 </p>
+
+<hr />
+<p>Form Valus: {{ profileForm.value | json }}</p>
+<p>Form Status: {{ profileForm.status }}</p>
