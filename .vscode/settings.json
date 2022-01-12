@@ -1,0 +1,12 @@
+{
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "javascript.format.enable": false, // 禁用vscode預設的js格式化外掛
+  "editor.formatOnSave": true, // 儲存程式碼的時候格式化
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // js檔案採用prettier進行格式化
+  },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+	}
+}
