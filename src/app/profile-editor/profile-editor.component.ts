@@ -4,7 +4,7 @@ import { FormArray, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-profile-editor',
   templateUrl: './profile-editor.component.html',
-  styleUrls: ['./profile-editor.component.css'],
+  styleUrls: ['./profile-editor.component.css']
 })
 export class ProfileEditorComponent {
   constructor(private fb: FormBuilder) {}
@@ -28,12 +28,12 @@ export class ProfileEditorComponent {
     firstName: ['', Validators.required], // HTML5 驗證器屬性可以和 Angular 響應式表單提供的內建驗證器組合使用。組合使用這兩種驗證器實踐，可以防止在範本檢查完之後表示式再次被修改導致的錯誤。
     lastName: [''],
     address: this.fb.group({
-      street: [''],
+      street: ['', Validators.required],
       city: [''],
       state: [''],
-      zip: [''],
+      zip: ['']
     }),
-    aliases: this.fb.array([this.fb.control('')]),
+    aliases: this.fb.array([this.fb.control('')])
   });
 
   onSubmit() {
@@ -45,8 +45,8 @@ export class ProfileEditorComponent {
     this.profileForm.patchValue({
       firstName: 'Nancy',
       address: {
-        street: '123 Drew Street',
-      },
+        street: '123 Drew Street'
+      }
     });
   }
 

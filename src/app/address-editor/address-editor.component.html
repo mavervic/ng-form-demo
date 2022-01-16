@@ -1,0 +1,61 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <div formGroupName="homeRegistAddr">
+    <h3>戶籍地址</h3>
+
+    <label>
+      Street:
+      <span
+        *ngIf="profileForm.controls.homeRegistAddr.errors"
+        style="color: red"
+      >
+        123
+      </span>
+      <input type="text" formControlName="street" required />
+    </label>
+
+    <label>
+      City:
+      <input type="text" formControlName="city" />
+    </label>
+
+    <label>
+      State:
+      <input type="text" formControlName="state" />
+    </label>
+  </div>
+
+  <div formGroupName="homeAddr">
+    <h3>現居地址</h3>
+    <label
+      ><input
+        type="checkbox"
+        formControlName="sameHomeRegistAddr"
+        (click)="syncHomeRegistAddr()"
+      />同戶籍地址</label
+    ><br />
+
+    <label>
+      Street:
+      <input type="text" formControlName="street" />
+    </label>
+
+    <label>
+      City:
+      <input type="text" formControlName="city" />
+    </label>
+
+    <label>
+      State:
+      <input type="text" formControlName="state" />
+    </label>
+  </div>
+
+  <!-- <button type="button" (click)="printFormInfo()">printFormInfo</button> -->
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>
+
+<!-- <hr />
+<p>Form Valus: {{ profileForm.value | json }}</p>
+<p>Form Status: {{ profileForm.status }}</p> -->
+<!-- <p>Form Status: {{ profileForm | json }}</p> -->
+<!-- {{ profileForm.controls.homeRegistAddr | json }} -->
