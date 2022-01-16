@@ -6,6 +6,12 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode" // js檔案採用prettier進行格式化
   },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": null
+  },
   "editor.codeActionsOnSave": {
     "source.organizeImports": true
 	}

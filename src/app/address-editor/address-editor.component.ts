@@ -11,8 +11,27 @@ import { distinctUntilChanged, filter } from 'rxjs/operators';
 export class AddressEditorComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
+  profileForm: FormGroup;
+
   ngOnInit() {
+    this.buildForm();
     this.syncAddress();
+  }
+
+  buildForm() {
+    this.profileForm = this.fb.group({
+      homeRegistAddr: this.fb.group({
+        street: [''],
+        city: [''],
+        state: ['']
+      }),
+      homeAddr: this.fb.group({
+        sameHomeRegistAddr: [false],
+        street: ['', Validators.required],
+        city: ['', Validators.required],
+        state: ['', Validators.required]
+      })
+    });
   }
 
   syncAddress() {
@@ -23,10 +42,6 @@ export class AddressEditorComponent implements OnInit {
       'homeAddr',
       'sameHomeRegistAddr'
     ])?.valueChanges;
-
-    if (sameHomeRegistAddr$) {
-      return;
-    }
 
     const distinctFlag$ = sameHomeRegistAddr$.pipe(distinctUntilChanged());
 
@@ -39,20 +54,6 @@ export class AddressEditorComponent implements OnInit {
         });
       });
   }
-
-  profileForm = this.fb.group({
-    homeRegistAddr: this.fb.group({
-      street: [''],
-      city: [''],
-      state: ['']
-    }),
-    homeAddr: this.fb.group({
-      sameHomeRegistAddr: [false],
-      street: ['', Validators.required],
-      city: ['', Validators.required],
-      state: ['', Validators.required]
-    })
-  });
 
   printFormInfo() {
     console.log(this.profileForm);

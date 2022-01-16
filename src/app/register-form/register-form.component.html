@@ -1,0 +1,63 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <div formGroupName="register">
+    <h2>註冊帳號密碼</h2>
+
+    <label>
+      帳號:
+      <span
+        *ngIf="
+          profileForm.get(['register', 'account']).errors?.errMsg as errMsg
+        "
+        style="color: red"
+      >
+        {{ errMsg }}
+      </span>
+      <input type="text" formControlName="account" />
+    </label>
+
+    <label>
+      密碼:
+      <span
+        *ngIf="
+          profileForm.get(['register', 'password']).errors?.errMsg as errMsg
+        "
+        style="color: red"
+      >
+        {{ errMsg }}
+      </span>
+      <input type="text" formControlName="password" />
+    </label>
+  </div>
+
+  <div formGroupName="recommender">
+    <h3>推薦人</h3>
+    <label>
+      推薦人單位:
+      <select name="" formControlName="recommenderDepartment">
+        <option value="">請選擇</option>
+        <option value="1">客服部</option>
+        <option value="2">宣傳部</option>
+      </select>
+    </label>
+
+    <label>
+      推薦人代碼:
+      <span
+        *ngIf="
+          profileForm.get(['recommender', 'recommenderId']).errors
+            ?.errMsg as errMsg
+        "
+        style="color: red"
+      >
+        {{ errMsg }}
+      </span>
+      <input type="text" formControlName="recommenderId" />
+    </label>
+  </div>
+
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>
+
+<hr />
+<p>Form Valus: {{ profileForm.value | json }}</p>
+<p>Form Status: {{ profileForm.status }}</p>
