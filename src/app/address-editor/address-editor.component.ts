@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { combineLatest } from 'rxjs';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
 
@@ -55,43 +55,8 @@ export class AddressEditorComponent implements OnInit {
       });
   }
 
-  printFormInfo() {
-    console.log(this.profileForm);
-    console.log(this.profileForm.controls);
-    console.log(this.profileForm.controls.homeRegistAddr);
-
-    let homeRegistAddr = this.profileForm.controls.homeRegistAddr as FormGroup;
-    console.log(homeRegistAddr.controls);
-    console.log(homeRegistAddr.controls.street);
-    console.log(homeRegistAddr.controls.street.errors);
-
-    let street = this.profileForm.controls['homeRegistAddr'].value.street;
-    console.log(this.profileForm.get(['homeRegistAddr', 'street'])?.errors);
-  }
-
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.profileForm);
   }
-
-  updateProfile() {
-    this.profileForm.patchValue({
-      firstName: 'Nancy',
-      address: {
-        street: '123 Drew Street'
-      }
-    });
-  }
-
-  get aliases() {
-    return this.profileForm.get('aliases') as FormArray;
-  }
-
-  addAlias() {
-    this.aliases.push(this.fb.control(''));
-  }
-
-  addRepresentacio() {}
-
-  syncHomeRegistAddr() {}
 }

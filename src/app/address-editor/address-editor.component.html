@@ -30,32 +30,46 @@
       ><input
         type="checkbox"
         formControlName="sameHomeRegistAddr"
-        (click)="syncHomeRegistAddr()"
       />同戶籍地址</label
     ><br />
 
     <label>
       Street:
-      <input type="text" formControlName="street" />
+      <input
+        type="text"
+        formControlName="street"
+        [readonly]="
+          profileForm.get(['homeAddr', 'sameHomeRegistAddr'])?.value === true
+        "
+      />
     </label>
 
     <label>
       City:
-      <input type="text" formControlName="city" />
+      <input
+        type="text"
+        formControlName="city"
+        [readonly]="
+          profileForm.get(['homeAddr', 'sameHomeRegistAddr'])?.value === true
+        "
+      />
     </label>
 
     <label>
       State:
-      <input type="text" formControlName="state" />
+      <input
+        type="text"
+        formControlName="state"
+        [readonly]="
+          profileForm.get(['homeAddr', 'sameHomeRegistAddr'])?.value === true
+        "
+      />
     </label>
   </div>
 
-  <!-- <button type="button" (click)="printFormInfo()">printFormInfo</button> -->
   <button type="submit" [disabled]="!profileForm.valid">Submit</button>
 </form>
 
 <!-- <hr />
 <p>Form Valus: {{ profileForm.value | json }}</p>
 <p>Form Status: {{ profileForm.status }}</p> -->
-<!-- <p>Form Status: {{ profileForm | json }}</p> -->
-<!-- {{ profileForm.controls.homeRegistAddr | json }} -->
