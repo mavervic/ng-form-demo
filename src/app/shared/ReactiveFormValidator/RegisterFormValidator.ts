@@ -27,7 +27,7 @@ export class RegisterFormValidator {
       return null;
     },
 
-    password(ctrl: AbstractControl): ValidationErrors | null {
+    passwordValidator(ctrl: AbstractControl): ValidationErrors | null {
       const { pristine } = ctrl;
 
       if (pristine) {

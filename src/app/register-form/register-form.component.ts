@@ -23,7 +23,7 @@ export class RegisterFormComponent implements OnInit {
     this.profileForm = this.fb.group({
       register: this.fb.group({
         account: ['', RegisterFormValidator.register.accountValidator],
-        password: ['', RegisterFormValidator.register.password]
+        password: ['', RegisterFormValidator.register.passwordValidator]
       }),
       recommender: this.fb.group(
         {
