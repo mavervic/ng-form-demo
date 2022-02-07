@@ -27,7 +27,7 @@ export class AddressEditorComponent implements OnInit {
       }),
       homeAddr: this.fb.group({
         sameHomeRegistAddr: [false],
-        street: ['', Validators.required],
+        street: ['', [Validators.required]],
         city: ['', Validators.required],
         state: ['', Validators.required]
       })
@@ -43,20 +43,22 @@ export class AddressEditorComponent implements OnInit {
       'sameHomeRegistAddr'
     ])?.valueChanges;
 
-    const distinctFlag$ = sameHomeRegistAddr$.pipe(distinctUntilChanged());
+    if (sameHomeRegistAddr$ && homeRegistAddr$) {
+      const distinctFlag$ = sameHomeRegistAddr$.pipe(distinctUntilChanged());
 
-    combineLatest([distinctFlag$, homeRegistAddr$])
-      .pipe(filter((value) => value[0] === true))
-      .subscribe((value) => {
-        this.profileForm.get(['homeAddr']).setValue({
-          sameHomeRegistAddr: true,
-          ...value[1]
+      combineLatest([distinctFlag$, homeRegistAddr$])
+        .pipe(filter((value) => value[0] === true))
+        .subscribe((value) => {
+          this.profileForm.get(['homeAddr'])?.setValue({
+            sameHomeRegistAddr: true,
+            ...value[1]
+          });
         });
-      });
+    }
   }
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    console.warn(this.profileForm);
+    console.log(this.profileForm.value);
   }
 }

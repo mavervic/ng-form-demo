@@ -10,7 +10,7 @@
       >
         123
       </span>
-      <input type="text" formControlName="street" required />
+      <input type="text" formControlName="street" />
     </label>
 
     <label>
@@ -70,6 +70,6 @@
   <button type="submit" [disabled]="!profileForm.valid">Submit</button>
 </form>
 
-<!-- <hr />
+<hr />
 <p>Form Valus: {{ profileForm.value | json }}</p>
-<p>Form Status: {{ profileForm.status }}</p> -->
+<p>Form Status: {{ profileForm.status }}</p>
