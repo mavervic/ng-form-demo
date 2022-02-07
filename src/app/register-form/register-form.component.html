@@ -6,11 +6,12 @@
       帳號:
       <span
         *ngIf="
-          profileForm.get(['register', 'account']).errors?.errMsg as errMsg
+          submitted &&
+          profileForm.get(['register', 'account'])?.errors as errors
         "
         style="color: red"
       >
-        {{ errMsg }}
+        {{ errors | json }}
       </span>
       <input type="text" formControlName="account" />
     </label>
@@ -19,11 +20,12 @@
       密碼:
       <span
         *ngIf="
-          profileForm.get(['register', 'password']).errors?.errMsg as errMsg
+          submitted &&
+          profileForm.get(['register', 'password'])?.errors as errors
         "
         style="color: red"
       >
-        {{ errMsg }}
+        {{ errors | json }}
       </span>
       <input type="text" formControlName="password" />
     </label>
@@ -44,7 +46,7 @@
       推薦人代碼:
       <span
         *ngIf="
-          profileForm.get(['recommender', 'recommenderId']).errors
+          profileForm.get(['recommender', 'recommenderId'])?.errors
             ?.errMsg as errMsg
         "
         style="color: red"
@@ -55,7 +57,8 @@
     </label>
   </div>
 
-  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+  <button type="submit">Submit</button>
+  <!-- <button type="submit" [disabled]="!profileForm.valid">Submit</button> -->
 </form>
 
 <hr />

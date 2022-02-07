@@ -53,9 +53,12 @@ export class RegisterFormValidator {
 
   static recommender = {
     crossValidator(formGroup: FormGroup): ValidationErrors | null {
-      const departmentVal = formGroup.get('recommenderDepartment').value;
+      const departmentVal = formGroup.get('recommenderDepartment')?.value;
       const idControl = formGroup.get('recommenderId');
-      idControl.setErrors(null);
+
+      if (!idControl) {
+        return null;
+      }
 
       if (departmentVal) {
         if (Validators.required(idControl)) {
