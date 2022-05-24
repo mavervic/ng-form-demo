@@ -55,33 +55,39 @@ export class RegisterFormValidator {
     crossValidator(formGroup: FormGroup): ValidationErrors | null {
       const departmentVal = formGroup.get('recommenderDepartment')?.value;
       const idControl = formGroup.get('recommenderId');
+      const notNeedValidate = departmentVal === '';
 
       if (!idControl) {
         return null;
       }
 
-      if (departmentVal) {
-        if (Validators.required(idControl)) {
-          idControl.setErrors({ errMsg: '推薦人代碼必填' });
+      // 當推薦人單位沒有選的時候，清空推薦人代碼的錯誤
+      if (notNeedValidate) {
+        idControl.setErrors(null);
+        return null;
+      }
+
+      if (Validators.required(idControl)) {
+        idControl.setErrors({ errMsg: '推薦人代碼必填' });
+        return null;
+      }
+
+      if (departmentVal === '1') {
+        const prefixA = InputTextValidator.checkRegExp(/^A/);
+        if (prefixA(idControl)) {
+          idControl.setErrors({ errMsg: '客服部推薦人代碼開頭為A' });
           return null;
         }
+      }
 
-        if (departmentVal === '1') {
-          const prefixA = InputTextValidator.checkRegExp(/^A/);
-          if (prefixA(idControl)) {
-            idControl.setErrors({ errMsg: '客服部推薦人代碼開頭為A' });
-            return null;
-          }
-        }
-
-        if (departmentVal === '2') {
-          const prefixB = InputTextValidator.checkRegExp(/^B/);
-          if (prefixB(idControl)) {
-            idControl.setErrors({ errMsg: '宣傳部推薦人代碼開頭為B' });
-            return null;
-          }
+      if (departmentVal === '2') {
+        const prefixB = InputTextValidator.checkRegExp(/^B/);
+        if (prefixB(idControl)) {
+          idControl.setErrors({ errMsg: '宣傳部推薦人代碼開頭為B' });
+          return null;
         }
       }
+
       return null;
     }
   };
